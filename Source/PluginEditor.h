@@ -15,5 +15,9 @@ public:
 private:
     MultiBandEqAudioProcessor& processor;
 
+	std::vector<std::unique_ptr<Slider>> m_eqLeftBandSliders;
+	std::vector<std::unique_ptr<Slider>> m_eqRightBandSliders;
+	std::vector<std::unique_ptr<Label>> m_eqBandLabels;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiBandEqAudioProcessorEditor)
 };

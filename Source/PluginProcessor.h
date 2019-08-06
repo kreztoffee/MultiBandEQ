@@ -57,5 +57,8 @@ public:
 
 private:
     //==============================================================================
+	std::vector<AudioParameterFloat*> m_eqLeftBandGains;
+	std::vector<AudioParameterFloat*> m_eqRightBandGains;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MultiBandEqAudioProcessor)
 };

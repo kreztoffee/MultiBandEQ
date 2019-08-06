@@ -13,6 +13,27 @@ MultiBandEqAudioProcessor::MultiBandEqAudioProcessor()
                        )
 #endif
 {
+	for (int i = 0; i < 30; ++i)
+	{
+		AudioParameterFloat* leftBandGain = nullptr;
+		AudioParameterFloat* rightBandGain = nullptr;
+
+		addParameter(leftBandGain = new AudioParameterFloat("eqLeftBandGain" + String(i),
+					 "Left Band " + String(i) + " Gain" + String(i),
+					 -1.0f,
+					 1.0f,
+					 0.0f));
+
+		m_eqLeftBandGains.push_back(leftBandGain);
+
+		addParameter(rightBandGain = new AudioParameterFloat("eqRightBandGain" + String(i),
+					 "Right Band " + String(i) + " Gain" + String(i),
+					 -1.0f,
+					 1.0f,
+					 0.0f));
+
+		m_eqRightBandGains.push_back(rightBandGain);
+	}
 }
 
 MultiBandEqAudioProcessor::~MultiBandEqAudioProcessor()
@@ -128,15 +149,24 @@ AudioProcessorEditor* MultiBandEqAudioProcessor::createEditor()
 
 void MultiBandEqAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+	MemoryOutputStream mem(destData, true);
+
+	for (int i = 0; i < 30; ++i)
+	{
+		mem.writeFloat(*m_eqLeftBandGains[i]);
+		mem.writeFloat(*m_eqRightBandGains[i]);
+	}
 }
 
 void MultiBandEqAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+	MemoryInputStream mem(data, static_cast<size_t> (sizeInBytes), false);
+	
+	for (int i = 0; i < 30; ++i)
+	{
+		*m_eqLeftBandGains[i] = mem.readFloat();
+		*m_eqRightBandGains[i] = mem.readFloat();
+	}
 }
 
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
