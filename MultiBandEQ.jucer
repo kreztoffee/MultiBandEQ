@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="jSFJ4l" name="MultiBandEQ" projectType="audioplug" jucerVersion="5.4.3">
+<JUCERPROJECT id="jSFJ4l" name="MultiBandEQ" projectType="audioplug" jucerVersion="5.4.4">
   <MAINGROUP id="yUVVFM" name="MultiBandEQ">
     <GROUP id="{17FD3172-0DCC-4C45-5720-BB9CD6E8174A}" name="Source">
       <FILE id="XPduTH" name="PluginProcessor.cpp" compile="1" resource="0"
@@ -77,6 +77,7 @@
   </MODULES>
   <LIVE_SETTINGS>
     <WINDOWS/>
+    <OSX/>
   </LIVE_SETTINGS>
   <JUCEOPTIONS JUCE_VST3_CAN_REPLACE_VST2="0" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>
